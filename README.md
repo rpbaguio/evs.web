@@ -1,2 +1,2 @@
-# evs.web
+# EVS WEB
 Electronic Voting System - WEB
