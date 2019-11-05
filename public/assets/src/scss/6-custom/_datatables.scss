@@ -1,0 +1,219 @@
+/*
+    Filename    : _datatables.scss
+    Location    : public/assets/src/scss/_datatables.scss
+    Purpose     : Datatables
+    Created     : 11/02/2019 18:10:46 by rpbaguio
+    Updated     : 
+    Changes     : 
+*/
+
+#datatables__default_wrapper {
+  .dataTable {
+    background-color: #fff;
+    color: #333;
+    thead {
+      tr {
+        th {
+          border: none;
+          border-top: 1px solid $gray-500;
+          border-bottom: 2px solid $gray-500;
+          width: calc(97% / 4);
+          //color: $gray-600;
+        }
+        th:first-child {
+          border-right: 1px solid $gray-500;
+        }
+        th:first-child,
+        th:nth-last-child(1),
+        th:nth-last-child(2) {
+          text-align: center;
+          width: 1%;
+        }
+      }
+      .sorting_asc,
+      .sorting_desc {
+        border-bottom: none;
+        border-bottom: 2px solid $warning;
+        background: linear-gradient(to bottom, transparent, lighten($warning, 25%));
+      }
+    }
+    tbody {
+        tr {
+          td {
+            //border: none;
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &:focus {
+              outline: none;
+            }
+          }
+          td:first-child {
+            text-align: center;
+            color: $gray-600;
+            border-right: 1px solid $gray-500;
+          }
+          td:nth-last-child(1),
+          td:nth-last-child(2) {
+            text-align: center;
+            width: 1%;
+            a {
+              color: $gray-600;
+              display: block;
+            }
+          }
+          td:nth-last-child(1) {
+            a {
+              &:active,
+              &:focus,
+              &:hover {
+                color: $danger;
+              }
+            }
+          }
+          td:nth-last-child(2) {
+            a {
+              &:active,
+              &:focus,
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+        }
+        tr:first-child {
+          td {
+            border-top: none;
+          }
+        }
+        tr:last-child {
+          td {
+            border-bottom: 1px solid $gray-500;
+          }
+        }
+        tr:nth-child(2n+1) {
+          td {
+            background-color: $gray-100;
+          }
+        }
+    }
+    tfoot {
+        th {
+          border-right: none;
+        }
+    }
+  }
+}
+
+#datatables__modal_wrapper {
+  .dataTable {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid $gray-600;
+    border-left: none;
+    border-right: none;
+    thead {
+      display: none;
+    }
+    tbody {
+        tr {
+          td {
+            width: calc(100% / 4);
+            border: none;
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+        tr.selected {
+          color: #333;
+          background-color: lighten($gray-600, 35%);
+        }
+    }
+  }
+}
+
+#datatables__default_wrapper,
+#datatables__modal_wrapper {
+  .row:nth-child(1),
+  .row:nth-child(2) {
+    margin-bottom: 20px;
+  }
+}
+
+#datatables__default_length,
+#datatables__default_filter,
+#datatables__modal_length,
+#datatables__modal_filter {
+  label {
+    margin: 5px;
+  }
+}
+  
+#datatables__default_processing,
+#datatables__modal_processing {
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  margin-left: -50%;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1.2em;
+  background-color: #fff;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(25%, rgba(255, 255, 255, 0.9)), color-stop(75%, rgba(255, 255, 255, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+}
+
+#datatables__default_info,
+#datatables__modal_info {
+  margin-bottom: 10px;
+}
+
+#datatables__default_paginate,
+#datatables__modal_paginate {
+  .pagination {
+    .page-item {
+      .page-link {
+        &:hover,
+        &:active,
+        &:focus {
+          color: #fff;
+          background-color: $primary;
+          border-color: $primary;
+        }
+      }
+    }
+    .page-item.active {
+      .page-link {
+        color: #fff;
+        background-color: $primary;
+        border-color: $primary;
+        &:hover,
+        &:active,
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #datatables__default_paginate,
+  #datatables__modal_paginate {
+    .pagination {
+      justify-content: center;
+    }
+  }
+}

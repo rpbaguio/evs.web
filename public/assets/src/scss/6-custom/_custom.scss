@@ -1,0 +1,334 @@
+/*
+    Filename    : custom.scss
+    Location    : public/assets/src/scss/6-custom/custom.scss
+    Purpose     : Custom stylesheet
+    Created     : 11/02/2019 00:06:31 by rpbaguio
+    Updated     : 11/04/2019 16:57:52 by rpbaguio
+    Changes     : 
+*/
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Main container */
+.main {
+  .navbar {
+    .sidebar-toggle {
+      .hamburger,
+      .hamburger:after,
+      .hamburger:before {
+        height: 2px;
+      }
+    }
+  }
+}
+
+/* Ballot Form */
+#ballot-form {
+  .card {
+
+    .card-header {
+      border: none;
+      border-radius: 0;
+    }
+
+    form {
+      overflow: hidden;
+      margin: 0;
+
+      .card-body {
+
+        .position-header {
+          color: $primary;
+        }
+
+        .checkbox {
+          background-color: lighten(#000, 95%);
+
+          input {
+            position: absolute;
+            left: -9999px;
+
+            + label {
+              margin-bottom: 15px;
+            }
+
+            &:checked {
+              + label {
+                .fullname {
+                  font-size: 16px;
+                  font-weight: 700;
+                  color: $danger;
+                }
+              }
+              + label {
+                background-color: lighten($danger, 35%);
+                border: 3px solid lighten($danger, 35%);
+                &:hover {
+                  border: 3px solid $danger;
+                }
+              }
+              + label::before {
+                border: 3px solid $danger;
+                @extend .material-icons;
+                font-size: 36px!important;
+                color: $danger;
+                content: '\e876';
+                padding: 5px;
+              }
+            }
+
+            &:disabled {
+              + label::before {
+                border: 3px solid #ccc;
+                @extend .material-icons;
+                font-size: 36px!important;
+                color: #ddd;
+                content: '\e14C';
+                padding: 5px;
+              }
+              + label {
+                border: 3px solid lighten(#000, 95%);
+                cursor: not-allowed;
+                .fullname, .group {
+                  color: #ccc;
+                }
+                .avatar {
+                  -webkit-filter: blur(10px) hue-rotate(-45deg);
+                  filter: blur(10px) hue-rotate(-45deg);
+                }
+                &:hover {
+                  background-color: lighten(#000, 95%);
+                }
+              }
+            }
+          }
+
+          label {
+            display: block;
+            position: relative;
+            padding: 15px 30px;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            border: 3px solid lighten(#000, 95%);
+
+            .fullname, 
+            .group {
+              margin-left: 40px;
+            }
+
+            .fullname {
+              font-size: 16px;
+              font-weight: 700;
+              color: $primary;
+            }
+
+            .group {
+              font-size: 14px;
+              font-weight: 400;
+              color: lighten(#000, 50%);
+            }
+
+            .avatar {
+              margin-top: -5px;
+              -webkit-filter: hue-rotate(-45deg);
+              filter: hue-rotate(-45deg);
+            }
+
+            &:hover {
+              border: 3px solid $warning;
+              background-color: lighten($warning, 30%);
+              &::before {
+                border: 3px solid $warning;
+                border-radius: 100%;
+              }
+            }
+
+            &::before {
+              content: '';
+              display: block;
+              position: absolute;
+              top: 10px;
+              bottom: 10px;
+              left: 10px;
+              width: 50px;
+              height: 50px;
+              border: 3px solid $primary;
+              border-radius: 100%;
+            }
+          }
+        }
+
+      }
+
+      .card-footer {
+        .btn[disabled] {
+          background-color: lighten($primary, 15%);
+          border-color: lighten($primary, 15%);
+          color: #fff;
+          &:hover {
+            color: #fff;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+/* Footer */
+footer {
+  > span {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+/* Modal */
+.modal {
+  .modal-content {
+    border-radius: 0;
+
+    .modal-header {
+      padding: 16px 48px;
+
+      .close {
+        opacity: .5;
+        &:hover,
+        &:active,
+        &:focus {
+          color: $danger;
+          opacity: 1;
+        }
+      }
+    }
+
+    .modal-body {
+      #access-code.form-control {
+        padding: 60px 0;
+        font-size: 30px;
+        color: $warning;
+        text-align: center;
+        background-color: lighten($warning, 35%);
+        border: 1px solid $warning;
+        &:focus {
+          box-shadow: none;
+        }
+        &.is-invalid {
+          color: $danger;
+          text-align: center;
+          background-color: lighten($danger, 35%);
+          border: 1px solid $danger;
+        }
+      }
+    }
+
+    .modal-footer {
+      justify-content: center;
+    }
+  }
+}
+
+/* Card */
+.card {
+  .card-header {
+    border-bottom: 1px solid $gray-300;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .card-subtitle {
+    font-size: 14px;
+  }
+
+  .card-footer {
+    padding: 1rem;
+    border-top: 1px solid $gray-300;
+  }
+}
+
+/* Ajax preloader */
+#ajax-preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+  .loader {
+    position: relative;
+    margin: 0 auto;
+    width: 100px;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+  }
+
+  .circular {
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    stroke-linecap: round;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+    }
+  }
+
+  @keyframes color {
+    100%,
+    0% {
+      stroke: $danger;
+    }
+    40% {
+      stroke: $primary;
+    }
+    66% {
+      stroke: $success;
+    }
+    80%,
+    90% {
+      stroke: $warning;
+    }
+  }
+}
