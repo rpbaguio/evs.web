@@ -223,7 +223,7 @@
                     "lengthMenu": [[10, 25, 50, 75, 100], [10, 25, 50, 75, 100]],
                     "order": [[1, "desc"]],
                     "columnDefs": [
-                        {"orderable": false, "targets": [0, 6, 7]}
+                        {"orderable": false, "targets": [0, 4, 5, 6, 7]}
                     ]
                 });
 
@@ -490,12 +490,18 @@
             }
         }
         
-        $.fn.activeList();
+        let app = {
+            init: function() {
+                $.fn.activeList();
+            }
+        }
+
         getAll.init();
         getById.init();
         create.init();
         update.init();
         softDelete.init();
+        app.init();
     });
 </script>
 

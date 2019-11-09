@@ -116,8 +116,14 @@
             }
         }
 
-        $.fn.activeList();
+        let app = {
+            init: function() {
+                $.fn.activeList();
+            }
+        }
+
         getAll.init();
+        app.init();
     });
 </script>
 

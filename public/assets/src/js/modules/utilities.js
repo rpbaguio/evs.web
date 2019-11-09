@@ -116,6 +116,15 @@ $.fn.extend({
             }
         });
     },
+    select2Helper: function() {
+        $('input[name="is_candidate"]').on('change', function(){
+            if($('input[name="is_candidate"]:checked').val() == 0) {
+                $('select[name="position_id"]').append('<option value="0" selected>&mdash;</option>');
+            } else {
+                $('select[name="position_id"]').append('<option value="" selected></option>');
+            }
+        });
+    },
     qrcodeGenerator: function() {
         $('input[name="access_code"]').change(function(){
             // Get access code from user input

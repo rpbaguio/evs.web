@@ -15,11 +15,6 @@
                             <div class="card-header">
                                 <div class="clearfix">
                                     <form class="form-inline float-right mt-1 d-none d-md-flex">
-                                        <!--
-                                        <a class="btn btn-primary mr-2" data-toggle="modal" href="#create">
-                                            <i class="align-middle" data-feather="plus"></i> Add New
-                                        </a>
-                                        -->
                                         <a id="reload" class="btn btn-primary" href="javascript:void(0)">
                                             <i class="align-middle" data-feather="rotate-ccw"></i> Reload
                                         </a>
@@ -300,7 +295,7 @@
                     "lengthMenu": [[10, 25, 50, 75, 100], [10, 25, 50, 75, 100]],
                     "order": [[1, "desc"]],
                     "columnDefs": [
-                        {"orderable": false, "targets": [0, 5, 6]}
+                        {"orderable": false, "targets": [0, 3, 4, 5, 6]}
                     ]
                 });
 
@@ -577,14 +572,20 @@
             }
         }
 
-        $.fn.activeList();
-        $.fn.groupsDDL();
-        $.fn.positionsDDL();
+        let app = {
+            init: function() {
+                $.fn.activeList();
+                $.fn.groupsDDL();
+                $.fn.positionsDDL();
+            }
+        }
+
         getAll.init();
         getById.init();
         //create.init();
         update.init();
         softDelete.init();
+        app.init();
     });
 </script>
 

@@ -193,7 +193,9 @@ class Persons extends CI_Controller
             'first_name' => $this->input->put('first_name'),
             'last_name' => $this->input->put('last_name'),
             'suffix' => $this->input->put('suffix'),
-            'group_id' => $this->input->put('group_id')
+            'group_id' => $this->input->put('group_id'),
+            'is_candidate' => $this->input->put('is_candidate'),
+            'position_id' => $this->input->put('position_id')
         );
 
         $this->form_validation
@@ -204,6 +206,8 @@ class Persons extends CI_Controller
             ->set_rules('last_name', 'Last Name', 'trim|required|xss_clean')
             ->set_rules('suffix', 'Suffix', 'trim|xss_clean')
             ->set_rules('group_id', 'Group', 'trim|required|xss_clean')
+            ->set_rules('is_candidate', 'Is Candidate', 'trim|required|xss_clean')
+            ->set_rules('position_id', 'Position', 'trim|required|xss_clean')
             ->set_error_delimiters('<li>', '</li>');
 
         if ($this->form_validation->run()) {
@@ -223,6 +227,8 @@ class Persons extends CI_Controller
                     'last_name' => $this->input->put('last_name'),
                     'suffix' => $this->input->put('suffix'),
                     'group_id' => $this->input->put('group_id'),
+                    'is_candidate' => $this->input->put('is_candidate'),
+                    'position_id' => $this->input->put('position_id'),
                     'user_id' => user('id')
                 ]
             ];
@@ -250,7 +256,9 @@ class Persons extends CI_Controller
                 'access_code' => form_error('access_code'),
                 'first_name' => form_error('first_name'),
                 'last_name' => form_error('last_name'),
-                'group_id' => form_error('group_id')
+                'group_id' => form_error('group_id'),
+                'is_candidate' => form_error('is_candidate'),
+                'position_id' => form_error('position_id')
             ];
             echo json_encode($view_data);
         }

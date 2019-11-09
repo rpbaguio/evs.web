@@ -35,7 +35,6 @@
                                             <th>Group</th>
                                             <th>Is Validated</th>
                                             <th>Is Voted</th>
-                                            <th>Created</th>
                                             <th>Modified</th>                                                         
                                             <th></th>
                                             <th></th>
@@ -75,7 +74,9 @@
                                 <select class="form-control" name="prefix">
                                     <option value="" selected>&mdash;</option>
                                     <option value="Fr.">Fr.</option>
+                                    <option value="Rev. Fr.">Rev. Fr.</option>
                                     <option value="Sr.">Sr.</option>
+                                    <option value="Sister M.">Sister M.</option>
                                     <option value="Bro.">Bro.</option>
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
@@ -117,12 +118,12 @@
                             <div class="form-group">
                                 <label for="group">Is Candidate? <span class="text-danger">*</span></label><br/>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="create-is-candidate1" name="is_candidate" class="custom-control-input" value="1">
-                                    <label class="custom-control-label" for="create-is-candidate1">Yes</label>
+                                    <input type="radio" id="create-is-candidate1" name="is_candidate" class="custom-control-input" value="0">
+                                    <label class="custom-control-label" for="create-is-candidate1">No</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="create-is-candidate2" name="is_candidate" class="custom-control-input" value="0">
-                                    <label class="custom-control-label" for="create-is-candidate2">No</label>
+                                    <input type="radio" id="create-is-candidate2" name="is_candidate" class="custom-control-input" value="1">
+                                    <label class="custom-control-label" for="create-is-candidate2">Yes</label>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +131,7 @@
                             <div class="form-group">
                                 <label for="create-position">Position</label>
                                 <select id="create-position" class="form-control" name="position_id">
-                                    <option value="0" selected>&mdash;</option>
+                                    <option value="" selected>&mdash;</option>
                                 </select>
                             </div>
                         </div>
@@ -194,7 +195,9 @@
                                 <select class="form-control" name="prefix">
                                     <option value="" selected>&mdash;</option>
                                     <option value="Fr.">Fr.</option>
+                                    <option value="Rev. Fr.">Rev. Fr.</option>
                                     <option value="Sr.">Sr.</option>
+                                    <option value="Sister M.">Sister M.</option>
                                     <option value="Bro.">Bro.</option>
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
@@ -229,6 +232,27 @@
                                 <label for="update-group">Group <span class="text-danger">*</span></label>
                                 <select id="update-group" class="form-control" name="group_id">
                                     <option value="" selected>&mdash;</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4 col-lg-4">
+                            <div class="form-group">
+                                <label for="group">Is Candidate? <span class="text-danger">*</span></label><br/>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="update-is-candidate1" name="is_candidate" class="custom-control-input" value="0">
+                                    <label class="custom-control-label" for="update-is-candidate1">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="update-is-candidate2" name="is_candidate" class="custom-control-input" value="1">
+                                    <label class="custom-control-label" for="update-is-candidate2">Yes</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 col-lg-8">
+                            <div class="form-group">
+                                <label for="update-position">Position</label>
+                                <select id="update-position" class="form-control" name="position_id">
+                                    <!-- This is where the position load -->
                                 </select>
                             </div>
                         </div>
@@ -303,25 +327,27 @@
                             "data": null
                         },
                         {"data": "full_name"},
-                        {"data": "group_long_name"},
                         {
-                            searchable: false,
-                            data: "is_validated",
-                            mRender: function (data) {
-                                return ((parseInt(data) === 1) ? '<span class="badge badge-info text-uppercase">yes</span>' : '<span class="badge badge-danger text-uppercase">no</span>');
-                            }
-                        },
-                        {
-                            searchable: false,
-                            data: "is_voted",
-                            mRender: function (data) {
-                                return ((parseInt(data) === 1) ? '<span class="badge badge-info text-uppercase">yes</span>' : '<span class="badge badge-danger text-uppercase">no</span>');
-                            }
-                        },
-                        {
-                            "data": "dt_created",
+                            "data": {
+                                "data":"group_short_name",
+                                "data":"group_long_name", 
+                            },
                             "mRender": function (data) {
-                                return (data === null) ?  '' : moment(data).format('lll');
+                                return "(" + data.group_short_name + ")" + " " + data.group_long_name;
+                            }
+                        },
+                        {
+                            "searchable": false,
+                            "data": "is_validated",
+                            "mRender": function (data) {
+                                return ((parseInt(data) === 1) ? '<span class="badge badge-info text-uppercase">yes</span>' : '<span class="badge badge-danger text-uppercase">no</span>');
+                            }
+                        },
+                        {
+                            "searchable": false,
+                            "data": "is_voted",
+                            "mRender": function (data) {
+                                return ((parseInt(data) === 1) ? '<span class="badge badge-info text-uppercase">yes</span>' : '<span class="badge badge-danger text-uppercase">no</span>');
                             }
                         },
                         {
@@ -348,7 +374,7 @@
                     "lengthMenu": [[10, 25, 50, 75, 100], [10, 25, 50, 75, 100]],
                     "order": [[1, "desc"]],
                     "columnDefs": [
-                        {"orderable": false, "targets": [0, 7, 8]}
+                        {"orderable": false, "targets": [0, 5, 6, 7]}
                     ]
                 });
 
@@ -383,6 +409,9 @@
                     _this.find('option:selected').remove();
                     _this.find('.select2-selection').removeAttr('style');
                     _this.find('.qrcode img').remove();
+                    _this.find('input[name="is_candidate"]').removeAttr('checked');
+                    _this.find('input:hidden[name="id"]').val('');
+                    _this.find('input:hidden[name="qrcode"]').val('');
                 });
             },
             autoFocus: function() {
@@ -417,7 +446,14 @@
                             _this.find('input[name="last_name"]').val(data.last_name);
                             _this.find('select[name="suffix"]').append('<option value="' + data.suffix + '" selected>' + data.suffix + '</option>'); 
                             _this.find('select[name="group_id"]').append('<option value="' + data.group_id + '" selected>' + data.group_long_name + '</option>'); 
-                            _this.find('select[name="position_id"]').append('<option value="' + data.position_id + '" selected>' + data.position_name + '</option>');
+                            
+                            if(data.is_candidate == 0) { 
+                                _this.find('input[name="is_candidate"]').eq(0).attr('checked', 'checked');
+                                _this.find('select[name="position_id"]').append('<option value="0" selected>&mdash;</option>');
+                            } else {
+                                _this.find('input[name="is_candidate"]').eq(1).attr('checked', 'checked');
+                                _this.find('select[name="position_id"]').append('<option value="' + data.position_id + '" selected>' + data.position_name + '</option>');
+                            }
                         }
                     });
 
@@ -448,6 +484,8 @@
                     _this.find('.form-control').removeClass('is-invalid');
                     _this.find('.custom-control-input').removeClass('is-invalid');
                     _this.find('.select2-selection').removeAttr('style');
+                    _this.find('select[name="group_id"]').append('<option value="" selected>&mdash;</option>');
+                    _this.find('select[name="position_id"]').append('<option value="" selected>&mdash;</option>');
                 });
             },
             autoFocus: function() {
@@ -561,6 +599,8 @@
                             (Boolean(data.first_name)) ? _this.find('input[name="first_name"]').addClass('is-invalid') : _this.find('input[name="first_name"]').removeClass('is-invalid'); 
                             (Boolean(data.last_name)) ? _this.find('input[name="last_name"]').addClass('is-invalid') : _this.find('input[name="last_name"]').removeClass('is-invalid');  
                             (Boolean(data.group_id)) ? _this.find('span[aria-labelledby="select2-update-group-container"]').css({'border':'1px solid #d9534f'}) : _this.find('span[aria-labelledby="select2-update-group-container"]').removeAttr('style'); 
+                            (Boolean(data.is_candidate)) ? _this.find('input[name="is_candidate"]').addClass('is-invalid') : _this.find('input[name="is_candidate"]').removeClass('is-invalid');   
+                            (Boolean(data.position_id)) ? _this.find('span[aria-labelledby="select2-update-position-container"]').css({'border':'1px solid #d9534f'}) : _this.find('span[aria-labelledby="select2-update-position-container"]').removeAttr('style');
                         }  
                     });
 
@@ -635,15 +675,22 @@
             }
         }
 
-        $.fn.activeList();
-        $.fn.groupsDDL();
-        $.fn.positionsDDL();
-        $.fn.qrcodeGenerator();
+        let app = {
+            init: function() {
+                $.fn.activeList();
+                $.fn.positionsDDL();
+                $.fn.groupsDDL();
+                $.fn.select2Helper();
+                $.fn.qrcodeGenerator();
+            }
+        }
+
         getAll.init();
         getById.init();
         create.init();
         update.init();
         softDelete.init();
+        app.init();
     });
 </script>
 

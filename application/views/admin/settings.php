@@ -158,9 +158,15 @@
             }
         }
 
-        $.fn.activeList();
+        let app = {
+            init: function() {
+                $.fn.activeList();
+            }
+        }
+
         getById.init();
         update.init();
+        app.init();
     });
 </script>
 
